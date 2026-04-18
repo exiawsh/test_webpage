@@ -22,7 +22,7 @@
   <!-- ============ Sidebar ============ -->
   <aside class="sidebar">
     <div class="brand">
-      <img class="brand__logo" src="assets/icons/vclab-logo.svg" alt="VCLab logo" />
+      <img class="brand__logo" src="assets/images/vclab-logo.jpg" alt="VCLab logo" />
       <div>
         <div class="brand__text">VCLab</div>
         <div class="brand__sub">PolyU · Hong Kong</div>
@@ -63,11 +63,16 @@
 
     <!-- ============ Hero ============ -->
     <section id="home" class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__bg-img"></div>
+        <div class="hero__bg-overlay"></div>
+        <div class="hero__bg-noise"></div>
+      </div>
       <div class="hero__grid-bg"></div>
       <div class="container">
         <div class="hero__inner">
           <div data-reveal>
-            <span class="hero__eyebrow">● Visual Computing Lab at PolyU</span>
+            <span class="hero__eyebrow">● Visual Computing Lab at PolyU · Hung Hom</span>
             <h1>Advancing<br/>Visual Intelligence<br/>for a Better World.</h1>
             <p class="hero__tagline">
               We are a research lab at The Hong Kong Polytechnic University led by
@@ -88,9 +93,17 @@
           </div>
 
           <div class="hero__visual" data-reveal>
-            <div class="hero__orbit"></div>
-            <div class="hero__diamond">
-              <div class="hero__diamond-label" style="transform: rotate(-45deg);">VC</div>
+            <div class="hero__logo-stage">
+              <div class="hero__logo-orbit"></div>
+              <div class="hero__logo-orbit hero__logo-orbit--2"></div>
+              <div class="hero__logo-glow"></div>
+              <div class="hero__logo-card">
+                <img src="assets/images/vclab-logo.jpg" alt="VCLab — Visual Computing Lab" />
+              </div>
+              <span class="hero__logo-tag hero__logo-tag--tl">Visual</span>
+              <span class="hero__logo-tag hero__logo-tag--tr">Computing</span>
+              <span class="hero__logo-tag hero__logo-tag--bl">PolyU</span>
+              <span class="hero__logo-tag hero__logo-tag--br">2026</span>
             </div>
           </div>
         </div>
@@ -100,6 +113,26 @@
           <div class="stat"><div class="stat__num">200+</div><div class="stat__label">Publications</div></div>
           <div class="stat"><div class="stat__num">12+</div><div class="stat__label">CVPR/ICLR 2026</div></div>
           <div class="stat"><div class="stat__num">30+</div><div class="stat__label">Students &amp; Postdocs</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Campus banner ============ -->
+    <section class="campus-band" aria-label="PolyU campus">
+      <div class="campus-band__img"></div>
+      <div class="campus-band__overlay"></div>
+      <div class="container campus-band__content">
+        <div class="campus-band__kicker">● Based in Hung Hom, Kowloon</div>
+        <h2 class="campus-band__title">Rooted at <span>The Hong Kong Polytechnic University</span>.</h2>
+        <p class="campus-band__desc">
+          Our lab sits inside the Department of Computing on PolyU's brick‑red Hung&nbsp;Hom campus —
+          home to Li&nbsp;Ka&nbsp;Shing Tower, the Jockey&nbsp;Club Innovation Tower by Zaha&nbsp;Hadid,
+          and a vibrant community of researchers pushing the boundaries of science and design.
+        </p>
+        <div class="campus-band__meta">
+          <div><span>PQ816</span>Lab Office</div>
+          <div><span>Hung Hom</span>Kowloon, HK</div>
+          <div><span>Dept. of Computing</span>Faculty of Engineering</div>
         </div>
       </div>
     </section>
