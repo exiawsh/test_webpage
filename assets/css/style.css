@@ -419,19 +419,19 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 /* ============ Hero stat cards (adjective form, glass pills) ============ */
 .hero__stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-top: 3rem;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1rem !important;
+  margin-top: 3rem !important;
   position: relative;
 }
-.stat {
+.hero__stats .stat {
   position: relative;
   display: block;
   background: rgba(255,255,255,.85);
   border: 1px solid rgba(143,19,41,.14);
   border-radius: var(--radius);
-  padding: 1.25rem 1.3rem 1.2rem;
+  padding: 1.45rem 1.45rem 1.3rem;
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 10px 24px rgba(143,19,41,.08), 0 2px 6px rgba(143,19,41,.05);
   text-decoration: none;
@@ -439,52 +439,64 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   overflow: hidden;
   transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease, border-color .3s ease;
 }
-.stat::before {
+.hero__stats .stat::before {
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--polyu-red), var(--gold));
   transform: scaleX(0); transform-origin: left;
   transition: transform .35s ease;
 }
-.stat::after {
+.hero__stats .stat::after {
   content: "";
-  position: absolute; bottom: -40px; right: -40px;
-  width: 130px; height: 130px; border-radius: 50%;
+  position: absolute; bottom: -50px; right: -50px;
+  width: 160px; height: 160px; border-radius: 50%;
   background: radial-gradient(circle, rgba(212,162,76,.22), transparent 70%);
   opacity: 0; transition: opacity .3s ease;
+  pointer-events: none;
 }
-.stat:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(143,19,41,.16); border-color: rgba(143,19,41,.28); }
-.stat:hover::before { transform: scaleX(1); }
-.stat:hover::after  { opacity: 1; }
+.hero__stats .stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(143,19,41,.16);
+  border-color: rgba(143,19,41,.28);
+}
+.hero__stats .stat:hover::before { transform: scaleX(1); }
+.hero__stats .stat:hover::after  { opacity: 1; }
 
-.stat__word {
+.hero__stats .stat__word {
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.05;
   background: linear-gradient(135deg, var(--polyu-red) 0%, var(--polyu-red-dark) 70%);
-  -webkit-background-clip: text; background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: .6rem;
-  letter-spacing: -0.005em;
+  color: var(--polyu-red); /* fallback when background-clip unsupported */
+  margin: 0 0 .55rem;
+  letter-spacing: -0.01em;
 }
-.stat__label {
-  font-size: .75rem;
+.hero__stats .stat__label {
+  font-size: .74rem;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: .14em;
+  letter-spacing: .16em;
   font-weight: 600;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
 }
-.stat--link::after { /* subtle corner arrow hint */ }
-.stat--link .stat__label::after {
+.hero__stats .stat__label::after {
   content: "↗";
-  display: inline-block;
-  margin-left: .3rem;
   color: var(--polyu-red);
   opacity: .55;
+  font-weight: 700;
   transition: transform .25s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
 }
-.stat--link:hover .stat__label::after { opacity: 1; transform: translate(2px, -2px); }
+.hero__stats .stat:hover .stat__label::after {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
 
 /* ============ (legacy) Hero Highlights cards — kept for backwards compat ============ */
 .hero__highlights {
