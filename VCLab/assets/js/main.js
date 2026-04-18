@@ -88,3 +88,38 @@ onScroll();
 
 /* ---------- Close mobile menu on nav click ---------- */
 navLinks.forEach(l => l.addEventListener("click", () => document.querySelector(".sidebar").classList.remove("is-open")));
+
+/* ---------- Hero spotlight rotator ---------- */
+(function initHeroRotator() {
+  const root = document.getElementById("hl-rotator");
+  if (!root) return;
+  const slides = Array.from(root.querySelectorAll(".hl__slide"));
+  const dots   = Array.from(root.querySelectorAll(".hl__dots button"));
+  if (slides.length < 2) return;
+
+  let idx = 0;
+  let timer = null;
+  const INTERVAL = 4200;
+
+  const show = (next) => {
+    slides[idx].classList.remove("is-active");
+    dots[idx]?.classList.remove("is-active");
+    idx = (next + slides.length) % slides.length;
+    slides[idx].classList.add("is-active");
+    dots[idx]?.classList.add("is-active");
+  };
+
+  const start = () => { stop(); timer = setInterval(() => show(idx + 1), INTERVAL); };
+  const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+  dots.forEach((dot, i) => dot.addEventListener("click", () => { show(i); start(); }));
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+
+  // Pause when tab hidden to save battery
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop(); else start();
+  });
+
+  start();
+})();
