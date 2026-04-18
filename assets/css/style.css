@@ -297,18 +297,34 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ============ Social planets orbiting the logo ============ */
+/* ============ Social planets orbiting the VC logo (true revolution) ============ */
 .hero__planet {
+  --orbit-radius: 150px;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
   width: 68px; height: 68px;
+  margin: -34px 0 0 -34px; /* center element on stage center */
   display: block;
   text-decoration: none;
   z-index: 3;
-  animation: planetFloat 6s ease-in-out infinite;
-  transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .3s ease;
+  animation: planetRevolve 120s linear infinite;
+  will-change: transform;
 }
+/* True orbital motion: outer rotate sweeps the arm, inner counter-rotate keeps planet upright */
+@keyframes planetRevolve {
+  from { transform: rotate(0deg)   translate(var(--orbit-radius)) rotate(0deg);   }
+  to   { transform: rotate(360deg) translate(var(--orbit-radius)) rotate(-360deg); }
+}
+/* Cycle is 120s. 4 planets spaced 90° apart (30s of cycle time) */
+.hero__planet--top    { animation-delay:  -90s; }  /* 75% -> 270° -> top */
+.hero__planet--right  { animation-delay:    0s; }  /* 0% -> 0° -> right */
+.hero__planet--bottom { animation-delay:  -30s; }  /* 25% -> 90° -> bottom */
+.hero__planet--left   { animation-delay:  -60s; }  /* 50% -> 180° -> left */
+.hero__planet:hover {
+  animation-play-state: paused;
+  z-index: 4;
+}
+
 .hero__planet-face {
   display: block;
   position: relative;
@@ -321,6 +337,7 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
     inset 0 3px 10px rgba(255,255,255,.45),
     inset 0 -4px 10px rgba(0,0,0,.22);
   overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
 }
 .hero__planet-face::before {
   content: "";
@@ -353,34 +370,27 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   transition: opacity .3s ease, translate .3s cubic-bezier(.2,.8,.2,1);
   translate: -50% -4px;
 }
-.hero__planet:hover {
-  transform: translate(-50%, -50%) scale(1.12);
-  filter: drop-shadow(0 10px 22px rgba(143,19,41,.32));
+.hero__planet:hover .hero__planet-face {
+  transform: scale(1.15);
+  box-shadow:
+    0 22px 44px rgba(143,19,41,.4),
+    0 4px 8px rgba(0,0,0,.2),
+    inset 0 3px 10px rgba(255,255,255,.5),
+    inset 0 -4px 10px rgba(0,0,0,.22);
 }
 .hero__planet:hover .hero__planet-label {
   opacity: 1;
   translate: -50% 0;
 }
 
-@keyframes planetFloat {
-  0%, 100% { translate: 0 0; }
-  50%      { translate: 0 -6px; }
-}
-
-/* Per-planet surface color (radial for planet feel) */
+/* Per-planet surface color */
 .hero__planet--github .hero__planet-face { background: radial-gradient(circle at 34% 28%, #4B5058, #181B22 75%); }
 .hero__planet--hf     .hero__planet-face { background: radial-gradient(circle at 34% 28%, #FFE884, #F8C500 78%); }
 .hero__planet--red    .hero__planet-face { background: radial-gradient(circle at 34% 28%, #FF5A7A, #E60033 78%); }
 .hero__planet--x      .hero__planet-face { background: radial-gradient(circle at 34% 28%, #3C3C3C, #000 78%); }
 
-/* HF emoji fills the whole planet surface (no inner icon centering) */
+/* HF emoji fills the whole planet surface */
 .hero__planet--hf svg { width: 92%; height: 92%; inset: 4% 0 0 0; }
-
-/* Positioning — 4 cardinal points on the inner orbit (radius ~150px) */
-.hero__planet--top    { margin-top:  -150px; animation-delay: 0s;   }
-.hero__planet--right  { margin-left:  150px; animation-delay: 1.5s; }
-.hero__planet--bottom { margin-top:   150px; animation-delay: 3s;   }
-.hero__planet--left   { margin-left: -150px; animation-delay: 4.5s; }
 
 .hero__chip-hint {
   position: absolute;
@@ -398,7 +408,74 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   z-index: 3;
 }
 
-/* ============ Hero Highlights (dynamic + linkable) ============ */
+/* ============ Hero Orbs — spinning icon planets ============ */
+.hero__orbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.2rem;
+  place-items: center;
+  position: relative;
+}
+
+.orb {
+  position: relative;
+  width: 108px; height: 108px;
+  display: block;
+  text-decoration: none;
+  animation: orbFloat 7s ease-in-out infinite;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+.orb:hover { transform: scale(1.07); }
+.orb--research { animation-delay: 0s;    }
+.orb--pubs     { animation-delay: 1.75s; }
+.orb--team     { animation-delay: 3.5s;  }
+.orb--news     { animation-delay: 5.25s; }
+
+@keyframes orbFloat {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -9px; }
+}
+
+.orb__sphere {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  box-shadow:
+    0 18px 38px rgba(143,19,41,.22),
+    0 6px 12px rgba(0,0,0,.14),
+    inset 0 4px 14px rgba(255,255,255,.55),
+    inset 0 -6px 18px rgba(0,0,0,.28);
+  animation: orbSpin 22s linear infinite;
+  will-change: transform;
+}
+@keyframes orbSpin { to { rotate: 360deg; } }
+
+.orb--research .orb__sphere { background: radial-gradient(circle at 32% 26%, #E04560, #8F1329 70%, #5C0A18 100%); }
+.orb--pubs     .orb__sphere { background: radial-gradient(circle at 32% 26%, #F5D58A, #C48A2C 70%, #8A5E1A 100%); animation-duration: 28s; }
+.orb--team     .orb__sphere { background: radial-gradient(circle at 32% 26%, #FFC3B5, #D87A66 70%, #9A4A3C 100%); animation-duration: 30s; }
+.orb--news     .orb__sphere { background: radial-gradient(circle at 32% 26%, #5A5864, #17141A 70%, #000 100%); animation-duration: 18s; }
+
+.orb__icon {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #fff;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+}
+.orb__icon svg { width: 48%; height: 48%; }
+
+.orb:hover .orb__sphere {
+  box-shadow:
+    0 26px 54px rgba(143,19,41,.34),
+    0 8px 18px rgba(0,0,0,.22),
+    inset 0 4px 14px rgba(255,255,255,.6),
+    inset 0 -6px 18px rgba(0,0,0,.28);
+}
+.orb:hover .orb__sphere { animation-duration: 10s; }
+
+/* ============ (legacy) Hero Highlights cards — kept for backwards compat ============ */
 .hero__highlights {
   display: grid;
   grid-template-columns: repeat(3, 0.78fr) 1.4fr;
@@ -799,12 +876,10 @@ footer a:hover { color: var(--polyu-red); }
   .hero__logo-orbit { width: 260px; height: 260px; }
   .hero__logo-orbit--2 { width: 340px; height: 340px; }
   .hero__logo-glow { width: 320px; height: 320px; }
-  .hero__planet { width: 62px; height: 62px; }
-  .hero__planet--top    { margin-top:  -132px; }
-  .hero__planet--right  { margin-left:  132px; }
-  .hero__planet--bottom { margin-top:   132px; }
-  .hero__planet--left   { margin-left: -132px; }
+  .hero__planet { --orbit-radius: 132px; width: 62px; height: 62px; margin: -31px 0 0 -31px; }
   .hero__chip-hint { margin-top: -195px; }
+  .hero__orbs { gap: 1.1rem; }
+  .orb { width: 92px; height: 92px; }
   .hero__highlights { grid-template-columns: repeat(2, 1fr); }
   .hero__highlights .hl--rotator { grid-column: span 2; }
   .collections-grid { grid-template-columns: repeat(2, 1fr); }
@@ -827,13 +902,11 @@ footer a:hover { color: var(--polyu-red); }
   .hero__logo-orbit { width: 220px; height: 220px; }
   .hero__logo-orbit--2 { width: 290px; height: 290px; }
   .hero__logo-glow { width: 270px; height: 270px; }
-  .hero__planet { width: 52px; height: 52px; }
+  .hero__planet { --orbit-radius: 114px; width: 52px; height: 52px; margin: -26px 0 0 -26px; }
   .hero__planet-label { font-size: .62rem; padding: .22rem .55rem; }
-  .hero__planet--top    { margin-top:  -114px; }
-  .hero__planet--right  { margin-left:  114px; }
-  .hero__planet--bottom { margin-top:   114px; }
-  .hero__planet--left   { margin-left: -114px; }
   .hero__chip-hint { display: none; }
+  .hero__orbs { grid-template-columns: repeat(4, 1fr); gap: .6rem; }
+  .orb { width: 72px; height: 72px; }
   .campus-band { padding: 3.5rem 0 !important; }
   .campus-band__meta { gap: 1rem; }
   .campus-band__meta span { font-size: 1.1rem; }
