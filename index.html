@@ -155,10 +155,16 @@
               <a class="hero__planet hero__planet--bottom hero__planet--red"
                  href="https://xhslink.com/m/7EbXvH5mcAX" target="_blank" rel="noopener" aria-label="小红书 — HKPU VC Lab">
                 <span class="hero__planet-face">
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <!-- Simple heart mark -->
-                    <path d="M32 50 C16 38 12 28 18 22 C22 18 28 19 32 25 C36 19 42 18 46 22 C52 28 48 38 32 50 Z" fill="#fff"/>
-                    <text x="32" y="16" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="11" fill="#fff" letter-spacing="-0.4">RED</text>
+                  <!-- Real 小红书 app icon: red squircle + white 小红书 wordmark -->
+                  <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#FE2442"/>
+                    <text x="50" y="62"
+                          text-anchor="middle"
+                          font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Heiti SC','SimHei',sans-serif"
+                          font-weight="900"
+                          font-size="28"
+                          letter-spacing="-1"
+                          fill="#fff">小红书</text>
                   </svg>
                 </span>
                 <span class="hero__planet-label">小红书 · HKPU VC Lab</span>
@@ -177,13 +183,24 @@
           </div>
         </div>
 
-        <!-- ============ Lab values — 4 adjectives ============ -->
-        <div class="hero__values" data-reveal>
-          <span class="values__lead">We are</span>
-          <a href="#research" class="value"><span class="value__dot"></span>Curious</a>
-          <a href="#publications" class="value"><span class="value__dot"></span>Rigorous</a>
-          <a href="#team" class="value"><span class="value__dot"></span>Collaborative</a>
-          <a href="#join" class="value"><span class="value__dot"></span>Open</a>
+        <!-- ============ Hero value cards (adjectives instead of numbers) ============ -->
+        <div class="hero__stats" data-reveal>
+          <a href="#research" class="stat stat--link">
+            <div class="stat__word">Curious</div>
+            <div class="stat__label">Research Directions</div>
+          </a>
+          <a href="#publications" class="stat stat--link">
+            <div class="stat__word">Rigorous</div>
+            <div class="stat__label">Publications</div>
+          </a>
+          <a href="#team" class="stat stat--link">
+            <div class="stat__word">Collaborative</div>
+            <div class="stat__label">Team &amp; Students</div>
+          </a>
+          <a href="#join" class="stat stat--link">
+            <div class="stat__word">Open</div>
+            <div class="stat__label">Join the Lab</div>
+          </a>
         </div>
       </div>
     </section>

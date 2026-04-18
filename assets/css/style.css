@@ -306,28 +306,29 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   display: block;
   text-decoration: none;
   z-index: 3;
-  animation: planetRevolve 45s linear infinite;
+  animation: planetRevolve 32s linear infinite !important;
   will-change: transform;
+  /* Respect reduced motion, but still show static cardinal positions via the delays */
 }
-/* Hard-coded keyframes per breakpoint (avoids var() edge cases in keyframes).
-   Outer rotate sweeps the arm, inner counter-rotate keeps planet upright. */
+/* Hard-coded keyframes per breakpoint — outer rotate sweeps the arm,
+   inner counter-rotate keeps planet upright. */
 @keyframes planetRevolve {
-  from { transform: rotate(0deg)   translate(150px) rotate(0deg);   }
-  to   { transform: rotate(360deg) translate(150px) rotate(-360deg); }
+  0%   { transform: rotate(0deg)   translate(150px) rotate(0deg);   }
+  100% { transform: rotate(360deg) translate(150px) rotate(-360deg); }
 }
 @keyframes planetRevolveMd {
-  from { transform: rotate(0deg)   translate(132px) rotate(0deg);   }
-  to   { transform: rotate(360deg) translate(132px) rotate(-360deg); }
+  0%   { transform: rotate(0deg)   translate(132px) rotate(0deg);   }
+  100% { transform: rotate(360deg) translate(132px) rotate(-360deg); }
 }
 @keyframes planetRevolveSm {
-  from { transform: rotate(0deg)   translate(114px) rotate(0deg);   }
-  to   { transform: rotate(360deg) translate(114px) rotate(-360deg); }
+  0%   { transform: rotate(0deg)   translate(114px) rotate(0deg);   }
+  100% { transform: rotate(360deg) translate(114px) rotate(-360deg); }
 }
-/* 4 planets spaced 90° apart (11.25s = 25% of 45s cycle) */
-.hero__planet--top    { animation-delay: -33.75s; }  /* 75% -> 270° -> top */
-.hero__planet--right  { animation-delay:       0s; } /* 0% -> 0° -> right */
-.hero__planet--bottom { animation-delay:  -11.25s; } /* 25% -> 90° -> bottom */
-.hero__planet--left   { animation-delay:   -22.5s; } /* 50% -> 180° -> left */
+/* 4 planets spaced 90° apart (8s = 25% of 32s cycle) */
+.hero__planet--top    { animation-delay: -24s !important; }  /* 270° -> top */
+.hero__planet--right  { animation-delay:   0s !important; }  /* 0°   -> right */
+.hero__planet--bottom { animation-delay:  -8s !important; }  /* 90°  -> bottom */
+.hero__planet--left   { animation-delay: -16s !important; }  /* 180° -> left */
 .hero__planet:hover {
   animation-play-state: paused;
   z-index: 4;
@@ -416,69 +417,74 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   z-index: 3;
 }
 
-/* ============ Lab values — 4 adjective pills ============ */
-.hero__values {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .7rem;
-  margin-top: 2.6rem;
-  padding-top: 1.6rem;
-  border-top: 1px solid rgba(143,19,41,.12);
+/* ============ Hero stat cards (adjective form, glass pills) ============ */
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+  position: relative;
 }
-.values__lead {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--muted);
-  margin-right: .3rem;
-  letter-spacing: .01em;
-}
-.value {
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  padding: .55rem 1.15rem .55rem .9rem;
-  background: rgba(255,255,255,.9);
-  border: 1px solid rgba(143,19,41,.16);
-  border-radius: 999px;
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: .005em;
-  color: var(--polyu-red);
+.stat {
+  position: relative;
+  display: block;
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(143,19,41,.14);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.3rem 1.2rem;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(143,19,41,.08), 0 2px 6px rgba(143,19,41,.05);
   text-decoration: none;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 14px rgba(143,19,41,.08);
-  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease,
-              background .3s ease, color .3s ease, border-color .3s ease;
+  color: inherit;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease, border-color .3s ease;
 }
-.value__dot {
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 0 rgba(212,162,76,.55);
-  animation: valuePulse 2.6s ease-out infinite;
-  flex-shrink: 0;
+.stat::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--polyu-red), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease;
 }
-.value:nth-child(2) .value__dot { animation-delay: 0s; }
-.value:nth-child(3) .value__dot { animation-delay: .6s; background: var(--polyu-red-soft); box-shadow: 0 0 0 0 rgba(200,25,61,.55);}
-.value:nth-child(4) .value__dot { animation-delay: 1.2s; background: var(--gold); }
-.value:nth-child(5) .value__dot { animation-delay: 1.8s; background: var(--polyu-red); box-shadow: 0 0 0 0 rgba(143,19,41,.5);}
+.stat::after {
+  content: "";
+  position: absolute; bottom: -40px; right: -40px;
+  width: 130px; height: 130px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,162,76,.22), transparent 70%);
+  opacity: 0; transition: opacity .3s ease;
+}
+.stat:hover { transform: translateY(-3px); box-shadow: 0 18px 38px rgba(143,19,41,.16); border-color: rgba(143,19,41,.28); }
+.stat:hover::before { transform: scaleX(1); }
+.stat:hover::after  { opacity: 1; }
 
-@keyframes valuePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212,162,76,.55); }
-  55%      { box-shadow: 0 0 0 7px rgba(212,162,76,0); }
+.stat__word {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.08;
+  background: linear-gradient(135deg, var(--polyu-red) 0%, var(--polyu-red-dark) 70%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: .6rem;
+  letter-spacing: -0.005em;
 }
-
-.value:hover {
-  transform: translateY(-2px);
-  background: var(--polyu-red);
-  color: #fff;
-  border-color: var(--polyu-red);
-  box-shadow: 0 14px 30px rgba(143,19,41,.28);
+.stat__label {
+  font-size: .75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-weight: 600;
 }
-.value:hover .value__dot { background: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+.stat--link::after { /* subtle corner arrow hint */ }
+.stat--link .stat__label::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: .3rem;
+  color: var(--polyu-red);
+  opacity: .55;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
+}
+.stat--link:hover .stat__label::after { opacity: 1; transform: translate(2px, -2px); }
 
 /* ============ (legacy) Hero Highlights cards — kept for backwards compat ============ */
 .hero__highlights {
@@ -881,9 +887,9 @@ footer a:hover { color: var(--polyu-red); }
   .hero__logo-orbit { width: 260px; height: 260px; }
   .hero__logo-orbit--2 { width: 340px; height: 340px; }
   .hero__logo-glow { width: 320px; height: 320px; }
-  .hero__planet { width: 62px; height: 62px; margin: -31px 0 0 -31px; animation-name: planetRevolveMd; }
+  .hero__planet { width: 62px; height: 62px; margin: -31px 0 0 -31px; animation-name: planetRevolveMd !important; }
   .hero__chip-hint { margin-top: -195px; }
-  .hero__values { justify-content: flex-start; }
+  .hero__stats { grid-template-columns: repeat(2, 1fr); }
   .hero__highlights { grid-template-columns: repeat(2, 1fr); }
   .hero__highlights .hl--rotator { grid-column: span 2; }
   .collections-grid { grid-template-columns: repeat(2, 1fr); }
@@ -906,11 +912,12 @@ footer a:hover { color: var(--polyu-red); }
   .hero__logo-orbit { width: 220px; height: 220px; }
   .hero__logo-orbit--2 { width: 290px; height: 290px; }
   .hero__logo-glow { width: 270px; height: 270px; }
-  .hero__planet { width: 52px; height: 52px; margin: -26px 0 0 -26px; animation-name: planetRevolveSm; }
+  .hero__planet { width: 52px; height: 52px; margin: -26px 0 0 -26px; animation-name: planetRevolveSm !important; }
   .hero__planet-label { font-size: .62rem; padding: .22rem .55rem; }
   .hero__chip-hint { display: none; }
-  .values__lead { font-size: .9rem; }
-  .value { font-size: .95rem; padding: .5rem 1rem .5rem .8rem; }
+  .hero__stats { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+  .stat { padding: 1rem 1.1rem; }
+  .stat__word { font-size: 1.45rem; }
   .campus-band { padding: 3.5rem 0 !important; }
   .campus-band__meta { gap: 1rem; }
   .campus-band__meta span { font-size: 1.1rem; }
