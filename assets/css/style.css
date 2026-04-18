@@ -299,27 +299,35 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
 
 /* ============ Social planets orbiting the VC logo (true revolution) ============ */
 .hero__planet {
-  --orbit-radius: 150px;
   position: absolute;
   top: 50%; left: 50%;
   width: 68px; height: 68px;
-  margin: -34px 0 0 -34px; /* center element on stage center */
+  margin: -34px 0 0 -34px; /* centre on stage centre */
   display: block;
   text-decoration: none;
   z-index: 3;
-  animation: planetRevolve 120s linear infinite;
+  animation: planetRevolve 45s linear infinite;
   will-change: transform;
 }
-/* True orbital motion: outer rotate sweeps the arm, inner counter-rotate keeps planet upright */
+/* Hard-coded keyframes per breakpoint (avoids var() edge cases in keyframes).
+   Outer rotate sweeps the arm, inner counter-rotate keeps planet upright. */
 @keyframes planetRevolve {
-  from { transform: rotate(0deg)   translate(var(--orbit-radius)) rotate(0deg);   }
-  to   { transform: rotate(360deg) translate(var(--orbit-radius)) rotate(-360deg); }
+  from { transform: rotate(0deg)   translate(150px) rotate(0deg);   }
+  to   { transform: rotate(360deg) translate(150px) rotate(-360deg); }
 }
-/* Cycle is 120s. 4 planets spaced 90° apart (30s of cycle time) */
-.hero__planet--top    { animation-delay:  -90s; }  /* 75% -> 270° -> top */
-.hero__planet--right  { animation-delay:    0s; }  /* 0% -> 0° -> right */
-.hero__planet--bottom { animation-delay:  -30s; }  /* 25% -> 90° -> bottom */
-.hero__planet--left   { animation-delay:  -60s; }  /* 50% -> 180° -> left */
+@keyframes planetRevolveMd {
+  from { transform: rotate(0deg)   translate(132px) rotate(0deg);   }
+  to   { transform: rotate(360deg) translate(132px) rotate(-360deg); }
+}
+@keyframes planetRevolveSm {
+  from { transform: rotate(0deg)   translate(114px) rotate(0deg);   }
+  to   { transform: rotate(360deg) translate(114px) rotate(-360deg); }
+}
+/* 4 planets spaced 90° apart (11.25s = 25% of 45s cycle) */
+.hero__planet--top    { animation-delay: -33.75s; }  /* 75% -> 270° -> top */
+.hero__planet--right  { animation-delay:       0s; } /* 0% -> 0° -> right */
+.hero__planet--bottom { animation-delay:  -11.25s; } /* 25% -> 90° -> bottom */
+.hero__planet--left   { animation-delay:   -22.5s; } /* 50% -> 180° -> left */
 .hero__planet:hover {
   animation-play-state: paused;
   z-index: 4;
@@ -408,72 +416,69 @@ p { margin: 0 0 1rem; color: var(--ink-soft); }
   z-index: 3;
 }
 
-/* ============ Hero Orbs — spinning icon planets ============ */
-.hero__orbs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 3.2rem;
-  place-items: center;
-  position: relative;
+/* ============ Lab values — 4 adjective pills ============ */
+.hero__values {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .7rem;
+  margin-top: 2.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(143,19,41,.12);
 }
-
-.orb {
-  position: relative;
-  width: 108px; height: 108px;
-  display: block;
+.values__lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-right: .3rem;
+  letter-spacing: .01em;
+}
+.value {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .55rem 1.15rem .55rem .9rem;
+  background: rgba(255,255,255,.9);
+  border: 1px solid rgba(143,19,41,.16);
+  border-radius: 999px;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .005em;
+  color: var(--polyu-red);
   text-decoration: none;
-  animation: orbFloat 7s ease-in-out infinite;
-  transition: transform .4s cubic-bezier(.2,.8,.2,1);
-  will-change: transform;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(143,19,41,.08);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease,
+              background .3s ease, color .3s ease, border-color .3s ease;
 }
-.orb:hover { transform: scale(1.07); }
-.orb--research { animation-delay: 0s;    }
-.orb--pubs     { animation-delay: 1.75s; }
-.orb--team     { animation-delay: 3.5s;  }
-.orb--news     { animation-delay: 5.25s; }
-
-@keyframes orbFloat {
-  0%, 100% { translate: 0 0; }
-  50%      { translate: 0 -9px; }
-}
-
-.orb__sphere {
-  position: absolute; inset: 0;
+.value__dot {
+  width: 9px; height: 9px;
   border-radius: 50%;
-  box-shadow:
-    0 18px 38px rgba(143,19,41,.22),
-    0 6px 12px rgba(0,0,0,.14),
-    inset 0 4px 14px rgba(255,255,255,.55),
-    inset 0 -6px 18px rgba(0,0,0,.28);
-  animation: orbSpin 22s linear infinite;
-  will-change: transform;
+  background: var(--gold);
+  box-shadow: 0 0 0 0 rgba(212,162,76,.55);
+  animation: valuePulse 2.6s ease-out infinite;
+  flex-shrink: 0;
 }
-@keyframes orbSpin { to { rotate: 360deg; } }
+.value:nth-child(2) .value__dot { animation-delay: 0s; }
+.value:nth-child(3) .value__dot { animation-delay: .6s; background: var(--polyu-red-soft); box-shadow: 0 0 0 0 rgba(200,25,61,.55);}
+.value:nth-child(4) .value__dot { animation-delay: 1.2s; background: var(--gold); }
+.value:nth-child(5) .value__dot { animation-delay: 1.8s; background: var(--polyu-red); box-shadow: 0 0 0 0 rgba(143,19,41,.5);}
 
-.orb--research .orb__sphere { background: radial-gradient(circle at 32% 26%, #E04560, #8F1329 70%, #5C0A18 100%); }
-.orb--pubs     .orb__sphere { background: radial-gradient(circle at 32% 26%, #F5D58A, #C48A2C 70%, #8A5E1A 100%); animation-duration: 28s; }
-.orb--team     .orb__sphere { background: radial-gradient(circle at 32% 26%, #FFC3B5, #D87A66 70%, #9A4A3C 100%); animation-duration: 30s; }
-.orb--news     .orb__sphere { background: radial-gradient(circle at 32% 26%, #5A5864, #17141A 70%, #000 100%); animation-duration: 18s; }
+@keyframes valuePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,162,76,.55); }
+  55%      { box-shadow: 0 0 0 7px rgba(212,162,76,0); }
+}
 
-.orb__icon {
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
+.value:hover {
+  transform: translateY(-2px);
+  background: var(--polyu-red);
   color: #fff;
-  z-index: 2;
-  pointer-events: none;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+  border-color: var(--polyu-red);
+  box-shadow: 0 14px 30px rgba(143,19,41,.28);
 }
-.orb__icon svg { width: 48%; height: 48%; }
-
-.orb:hover .orb__sphere {
-  box-shadow:
-    0 26px 54px rgba(143,19,41,.34),
-    0 8px 18px rgba(0,0,0,.22),
-    inset 0 4px 14px rgba(255,255,255,.6),
-    inset 0 -6px 18px rgba(0,0,0,.28);
-}
-.orb:hover .orb__sphere { animation-duration: 10s; }
+.value:hover .value__dot { background: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,0); }
 
 /* ============ (legacy) Hero Highlights cards — kept for backwards compat ============ */
 .hero__highlights {
@@ -876,10 +881,9 @@ footer a:hover { color: var(--polyu-red); }
   .hero__logo-orbit { width: 260px; height: 260px; }
   .hero__logo-orbit--2 { width: 340px; height: 340px; }
   .hero__logo-glow { width: 320px; height: 320px; }
-  .hero__planet { --orbit-radius: 132px; width: 62px; height: 62px; margin: -31px 0 0 -31px; }
+  .hero__planet { width: 62px; height: 62px; margin: -31px 0 0 -31px; animation-name: planetRevolveMd; }
   .hero__chip-hint { margin-top: -195px; }
-  .hero__orbs { gap: 1.1rem; }
-  .orb { width: 92px; height: 92px; }
+  .hero__values { justify-content: flex-start; }
   .hero__highlights { grid-template-columns: repeat(2, 1fr); }
   .hero__highlights .hl--rotator { grid-column: span 2; }
   .collections-grid { grid-template-columns: repeat(2, 1fr); }
@@ -902,11 +906,11 @@ footer a:hover { color: var(--polyu-red); }
   .hero__logo-orbit { width: 220px; height: 220px; }
   .hero__logo-orbit--2 { width: 290px; height: 290px; }
   .hero__logo-glow { width: 270px; height: 270px; }
-  .hero__planet { --orbit-radius: 114px; width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+  .hero__planet { width: 52px; height: 52px; margin: -26px 0 0 -26px; animation-name: planetRevolveSm; }
   .hero__planet-label { font-size: .62rem; padding: .22rem .55rem; }
   .hero__chip-hint { display: none; }
-  .hero__orbs { grid-template-columns: repeat(4, 1fr); gap: .6rem; }
-  .orb { width: 72px; height: 72px; }
+  .values__lead { font-size: .9rem; }
+  .value { font-size: .95rem; padding: .5rem 1rem .5rem .8rem; }
   .campus-band { padding: 3.5rem 0 !important; }
   .campus-band__meta { gap: 1rem; }
   .campus-band__meta span { font-size: 1.1rem; }
