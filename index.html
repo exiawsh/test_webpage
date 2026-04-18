@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PolyU VCLab · Visual Computing Lab</title>
+<meta name="description" content="PolyU Visual Computing Lab (VCLab) — led by Chair Professor Lei Zhang at The Hong Kong Polytechnic University. Research on visual restoration, multimodal reasoning, image/video synthesis, 3D perception, model architectures and benchmarks." />
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.sidebar').classList.toggle('is-open')">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<div class="layout">
+
+  <!-- ============ Sidebar ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <img class="brand__logo" src="assets/icons/vclab-logo.svg" alt="VCLab logo" />
+      <div>
+        <div class="brand__text">VCLab</div>
+        <div class="brand__sub">PolyU · Hong Kong</div>
+      </div>
+    </div>
+
+    <nav class="sidebar__nav" id="nav">
+      <a href="#home"         class="active"><span class="dot"></span>Home</a>
+      <a href="#about"><span class="dot"></span>About the Lab</a>
+      <a href="#research"><span class="dot"></span>Research Collections</a>
+      <a href="#news"><span class="dot"></span>News</a>
+      <a href="#publications"><span class="dot"></span>Publications</a>
+      <a href="#team"><span class="dot"></span>Team</a>
+      <a href="#join"><span class="dot"></span>Join Us</a>
+      <a href="#contact"><span class="dot"></span>Contact</a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <strong>Visual Computing Lab</strong>
+      Dept. of Computing<br/>
+      The Hong Kong Polytechnic<br/>University · Hung Hom, Kowloon
+      <div class="sidebar__socials">
+        <a href="https://scholar.google.com/citations?user=tAK5l1IAAAAJ" title="Google Scholar" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg>
+        </a>
+        <a href="https://github.com/" title="GitHub" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 007.86 10.94c.58.1.79-.25.79-.56v-2.04c-3.2.69-3.87-1.37-3.87-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 015.78 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a href="mailto:cslzhang@comp.polyu.edu.hk" title="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ Main ============ -->
+  <main class="main">
+
+    <!-- ============ Hero ============ -->
+    <section id="home" class="hero">
+      <div class="hero__grid-bg"></div>
+      <div class="container">
+        <div class="hero__inner">
+          <div data-reveal>
+            <span class="hero__eyebrow">● Visual Computing Lab at PolyU</span>
+            <h1>Advancing<br/>Visual Intelligence<br/>for a Better World.</h1>
+            <p class="hero__tagline">
+              We are a research lab at The Hong Kong Polytechnic University led by
+              <strong>Chair Professor Lei Zhang</strong>, working on the frontiers of
+              computer vision, multimodal foundation models, and generative AI.
+            </p>
+            <blockquote class="hero__mission">
+              “Y learning and beyond — for future visual enhancement and understanding.”
+              <small>— VCLab Mission</small>
+            </blockquote>
+            <div class="hero__ctas">
+              <a href="#research" class="btn btn--primary">Explore Research
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="#publications" class="btn btn--ghost">Recent Papers</a>
+              <a href="https://www4.comp.polyu.edu.hk/~cslzhang/" class="btn btn--ghost" target="_blank" rel="noopener">Prof. Lei Zhang Homepage ↗</a>
+            </div>
+          </div>
+
+          <div class="hero__visual" data-reveal>
+            <div class="hero__orbit"></div>
+            <div class="hero__diamond">
+              <div class="hero__diamond-label" style="transform: rotate(-45deg);">VC</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__stats" data-reveal>
+          <div class="stat"><div class="stat__num">6</div><div class="stat__label">Research Directions</div></div>
+          <div class="stat"><div class="stat__num">200+</div><div class="stat__label">Publications</div></div>
+          <div class="stat"><div class="stat__num">12+</div><div class="stat__label">CVPR/ICLR 2026</div></div>
+          <div class="stat"><div class="stat__num">30+</div><div class="stat__label">Students &amp; Postdocs</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-head__kicker">About the Lab</div>
+            <h2>A home for curious visual-intelligence researchers.</h2>
+          </div>
+          <p class="section-head__desc">Founded at the Department of Computing, PolyU, VCLab explores both fundamental and applied problems in visual computing, with strong industrial collaboration and a global publication footprint.</p>
+        </div>
+
+        <div class="about-grid">
+          <div data-reveal>
+            <p>The <strong>Visual Computing Lab (VCLab)</strong> at
+              <a href="https://www.polyu.edu.hk/" target="_blank" rel="noopener">The Hong Kong Polytechnic University</a>
+              pursues research across the full stack of modern visual intelligence — from low-level
+              image and video restoration, through multimodal perception and reasoning, to
+              large-scale generative models, 3D reconstruction, new network architectures and
+              rigorous evaluation benchmarks.</p>
+
+            <p>Our work is regularly published in top-tier venues including <strong>CVPR, ICCV, ECCV,
+              NeurIPS, ICLR, TPAMI and IJCV</strong>, and many of our methods have been deployed on
+              hundreds of millions of mobile devices through our long-term collaboration with
+              <strong>OPPO Research Institute</strong>.</p>
+
+            <p>We welcome talented students, postdocs and interns who care deeply about visual
+              intelligence. If our mission resonates with you,
+              <a href="#join">come join us →</a></p>
+
+            <div class="chip-row" style="margin-top:1.25rem">
+              <span class="chip">Computer Vision</span>
+              <span class="chip">Image / Video Restoration</span>
+              <span class="chip">Generative Models</span>
+              <span class="chip">MLLM / VLM</span>
+              <span class="chip">3D Vision</span>
+              <span class="chip">Efficient Models</span>
+              <span class="chip">Benchmarks</span>
+            </div>
+          </div>
+
+          <div class="pi-card" data-reveal>
+            <div class="pi-card__top"></div>
+            <div class="pi-card__body">
+              <div class="pi-card__avatar">LZ</div>
+              <div class="pi-card__name">Prof. Lei Zhang</div>
+              <div class="pi-card__title">Director · Chair Professor · IEEE Fellow</div>
+              <div class="pi-card__tags">
+                <span class="pi-card__tag">PolyU</span>
+                <span class="pi-card__tag">OPPO Research</span>
+                <span class="pi-card__tag">Computer Vision</span>
+              </div>
+              <a class="pi-card__link" href="https://www4.comp.polyu.edu.hk/~cslzhang/" target="_blank" rel="noopener">Personal homepage ↗</a><br/>
+              <a class="pi-card__link" href="https://scholar.google.com/citations?user=tAK5l1IAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Research Collections ============ -->
+    <section id="research">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-head__kicker">Collections</div>
+            <h2>Six research directions.<br/>One unified vision.</h2>
+          </div>
+          <p class="section-head__desc">Our research is organized into six complementary collections. Click any card to see related publications, code and demos.</p>
+        </div>
+
+        <div class="collections-grid">
+
+          <a href="collections/restoration.html" class="col-card" data-reveal>
+            <span class="col-card__num">01</span>
+            <div class="col-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="12" width="48" height="36" rx="3"/>
+                <path d="M8 38 L20 28 L28 34 L42 22 L56 32"/>
+                <circle cx="42" cy="20" r="3" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="col-card__title">Image / Video Restoration, Enhancement &amp; Quality Assessment</h3>
+            <p class="col-card__desc">Leading research on real-world super-resolution, denoising, deblurring, HDR, flicker removal and perceptual quality assessment.</p>
+            <span class="col-card__arrow">Explore collection →</span>
+          </a>
+
+          <a href="collections/multimodal.html" class="col-card" data-reveal>
+            <span class="col-card__num">02</span>
+            <div class="col-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="20" r="8"/>
+                <rect x="34" y="12" width="22" height="16" rx="2"/>
+                <circle cx="18" cy="46" r="8"/>
+                <path d="M26 20 L34 20 M26 46 L56 28" stroke-dasharray="2 2"/>
+              </svg>
+            </div>
+            <h3 class="col-card__title">Multimodal Perception, Understanding &amp; Reasoning</h3>
+            <p class="col-card__desc">MLLM-driven visual perception, grounding and reasoning — enhancing the multi-tasking capabilities of large multimodal models.</p>
+            <span class="col-card__arrow">Explore collection →</span>
+          </a>
+
+          <a href="collections/synthesis.html" class="col-card" data-reveal>
+            <span class="col-card__num">03</span>
+            <div class="col-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 6 L38 16 L50 16 L42 26 L46 38 L32 30 L18 38 L22 26 L14 16 L26 16 Z"/>
+                <path d="M10 50 Q32 56 54 50" />
+              </svg>
+            </div>
+            <h3 class="col-card__title">Image &amp; Video Synthesis and Generation</h3>
+            <p class="col-card__desc">Accelerating, distilling and improving diffusion / autoregressive / DiT-based generative models for images and videos.</p>
+            <span class="col-card__arrow">Explore collection →</span>
+          </a>
+
+          <a href="collections/3d.html" class="col-card" data-reveal>
+            <span class="col-card__num">04</span>
+            <div class="col-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 8 L54 20 L54 44 L32 56 L10 44 L10 20 Z"/>
+                <path d="M32 8 L32 32 L10 20 M32 32 L54 20 M32 32 L32 56"/>
+              </svg>
+            </div>
+            <h3 class="col-card__title">3D Perception, Reconstruction &amp; Generation</h3>
+            <p class="col-card__desc">Sensing, reconstructing, synthesizing and editing high-fidelity 3D worlds from images, videos and language prompts.</p>
+            <span class="col-card__arrow">Explore collection →</span>
+          </a>
+
+          <a href="collections/architecture.html" class="col-card" data-reveal>
+            <span class="col-card__num">05</span>
+            <div class="col-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="20" r="3"/><circle cx="12" cy="44" r="3"/>
+                <circle cx="32" cy="12" r="3"/><circle cx="32" cy="32" r="3"/><circle cx="32" cy="52" r="3"/>
+                <circle cx="52" cy="20" r="3"/><circle cx="52" cy="44" r="3"/>
+                <path d="M15 20 L29 13 M15 20 L29 32 M15 44 L29 32 M15 44 L29 52 M35 12 L49 20 M35 32 L49 20 M35 32 L49 44 M35 52 L49 44"/>
+              </svg>
+            </div>
+            <h3 class="col-card__title">Architecture &amp; Training Paradigms</h3>
+            <p class="col-card__desc">Novel architectures of vision transformers, LLMs / VLMs and efficient, decentralized training paradigms for frontier models.</p>
+            <span class="col-card__arrow">Explore collection →</span>
+          </a>
+
+          <a href="collections/benchmarks.html" class="col-card" data-reveal>
+            <span class="col-card__num">06</span>
+            <div class="col-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="10" y="8" width="44" height="48" rx="3"/>
+                <path d="M18 20 h28 M18 28 h28 M18 36 h20 M18 44 h16"/>
+                <path d="M44 48 L44 36 M48 48 L48 34 M52 48 L52 38"/>
+              </svg>
+            </div>
+            <h3 class="col-card__title">Benchmarks &amp; Datasets</h3>
+            <p class="col-card__desc">Evaluation benchmarks and training datasets driving rigorous, reproducible progress for the visual computing community.</p>
+            <span class="col-card__arrow">Explore collection →</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ News ============ -->
+    <section id="news">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-head__kicker">Latest News</div>
+            <h2>What's happening at VCLab.</h2>
+          </div>
+          <a href="#publications" class="btn btn--ghost">View all news →</a>
+        </div>
+
+        <div class="news-wrap">
+          <div class="news-item" data-reveal>
+            <div class="news-date">Apr 2026</div>
+            <div class="news-text"><strong>12 papers</strong> accepted to CVPR 2026 (including 2 Highlights and 1 Oral) and ICLR 2026.</div>
+            <span class="news-badge news-badge--gold">Highlight</span>
+          </div>
+          <div class="news-item" data-reveal>
+            <div class="news-date">Mar 2026</div>
+            <div class="news-text">Release of <strong>VOSR</strong> — a vision-only generative image super-resolution model trained without text–image pairs.</div>
+            <span class="news-badge">Release</span>
+          </div>
+          <div class="news-item" data-reveal>
+            <div class="news-date">Mar 2026</div>
+            <div class="news-text"><strong>Omni-3DEdit</strong>, our generalized one-pass 3D editing framework, is accepted as a CVPR 2026 <em>Highlight</em>.</div>
+            <span class="news-badge news-badge--gold">Highlight</span>
+          </div>
+          <div class="news-item" data-reveal>
+            <div class="news-date">Feb 2026</div>
+            <div class="news-text"><strong>Recruiting</strong>: multiple PhD, postdoc and research intern positions jointly with OPPO Research Institute. See <a href="#join">Join Us</a>.</div>
+            <span class="news-badge">Hiring</span>
+          </div>
+          <div class="news-item" data-reveal>
+            <div class="news-date">Jan 2026</div>
+            <div class="news-text"><strong>VideoVerse</strong> &amp; <strong>TIIF-Bench</strong> released — rigorous benchmarks for T2V and T2I instruction following.</div>
+            <span class="news-badge">Release</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Publications ============ -->
+    <section id="publications">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-head__kicker">Selected Publications</div>
+            <h2>Recent work from our lab.</h2>
+          </div>
+          <p class="section-head__desc">A curated selection of recent VCLab publications. For the full list, see <a href="https://www4.comp.polyu.edu.hk/~cslzhang/papers.htm" target="_blank" rel="noopener">Prof. Zhang's publication page ↗</a>.</p>
+        </div>
+
+        <div class="pub-tabs" id="pub-tabs">
+          <button class="pub-tab active" data-filter="all">All</button>
+          <button class="pub-tab" data-filter="restoration">Restoration</button>
+          <button class="pub-tab" data-filter="multimodal">Multimodal</button>
+          <button class="pub-tab" data-filter="synthesis">Generation</button>
+          <button class="pub-tab" data-filter="3d">3D</button>
+          <button class="pub-tab" data-filter="architecture">Architecture</button>
+          <button class="pub-tab" data-filter="benchmarks">Benchmarks</button>
+        </div>
+
+        <div class="pub-list" id="pub-list">
+          <!-- items injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Team ============ -->
+    <section id="team">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-head__kicker">Our Team</div>
+            <h2>People behind the work.</h2>
+          </div>
+          <p class="section-head__desc">A close-knit team of researchers, PhDs and interns passionate about pushing visual intelligence forward.</p>
+        </div>
+
+        <div class="team-group-title">Faculty</div>
+        <div class="team-grid">
+          <div class="team-card" data-reveal>
+            <div class="team-avatar">LZ</div>
+            <div class="team-name">Prof. Lei Zhang</div>
+            <div class="team-role">Director · Chair Professor</div>
+          </div>
+        </div>
+
+        <div class="team-group-title">PhD Students &amp; Postdocs</div>
+        <div class="team-grid" id="students-grid">
+          <!-- auto-rendered -->
+        </div>
+
+        <div class="team-group-title">Alumni</div>
+        <p style="color:var(--muted); font-size:.92rem;">Our alumni are now at leading universities and companies including MSRA, Huawei Noah's Ark Lab, Meituan, Tencent AI Lab, Alibaba DAMO, OPPO, ByteDance and more.</p>
+      </div>
+    </section>
+
+    <!-- ============ Join ============ -->
+    <section id="join">
+      <div class="container">
+        <div class="join" data-reveal>
+          <div class="section-head__kicker" style="color:#F6D89F">Open Positions</div>
+          <h2>Join us in shaping<br/>the future of visual intelligence.</h2>
+          <p>We are recruiting <strong>PhD students</strong> (jointly trained with OPPO Research Institute),
+            <strong>postdocs</strong> and <strong>research interns</strong> across all six directions — image /
+            video restoration, generative models, multimodal reasoning, 3D, efficient architectures
+            and benchmarks.</p>
+          <div class="hero__ctas" style="margin-top:1.5rem">
+            <a href="mailto:cslzhang@comp.polyu.edu.hk?subject=VCLab%20Application" class="btn btn--primary">Send your CV →</a>
+            <a href="https://www4.comp.polyu.edu.hk/~cslzhang/" class="btn btn--ghost" target="_blank" rel="noopener">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Contact ============ -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-head__kicker">Contact</div>
+            <h2>Get in touch.</h2>
+          </div>
+        </div>
+        <div class="about-grid">
+          <div data-reveal>
+            <p><strong>Prof. Lei Zhang</strong><br/>
+              Department of Computing<br/>
+              The Hong Kong Polytechnic University<br/>
+              Hung Hom, Kowloon, Hong Kong</p>
+            <p>Office: <strong>PQ816</strong><br/>
+               Email: <a href="mailto:cslzhang@comp.polyu.edu.hk">cslzhang [at] comp.polyu.edu.hk</a></p>
+          </div>
+          <div data-reveal>
+            <p style="color:var(--muted); font-size:.9rem">For general lab inquiries, collaborations and press, please email Prof. Lei Zhang. For prospective students, please include your CV and a brief statement of interest.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Footer ============ -->
+    <footer>
+      <div class="container">
+        <div>© 2026 PolyU VCLab — Visual Computing Lab, The Hong Kong Polytechnic University.</div>
+        <div>
+          <a href="https://www.polyu.edu.hk/" target="_blank" rel="noopener">PolyU</a> ·
+          <a href="https://www.polyu.edu.hk/comp/" target="_blank" rel="noopener">Dept. of Computing</a> ·
+          <a href="https://www4.comp.polyu.edu.hk/~cslzhang/" target="_blank" rel="noopener">Prof. Lei Zhang</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script src="assets/js/pubs.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
